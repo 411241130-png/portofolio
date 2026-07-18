@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Febriyanti</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e8e0d5;
+            color: #3d2c1b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: #d4c5b2;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #5a3e2b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3d2c1b;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #c4b3a0;
+            box-shadow: inset 4px 4px 8px #b8a896, inset -4px -4px 8px #f0e2d0;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: #e8e0d5;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            color: #3d2c1b;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            color: #5a4a3a;
+            margin-bottom: 5px;
+        }
+
+        .hero-content .bio {
+            font-size: 1em;
+            max-width: 600px;
+            margin: 15px auto;
+            color: #6b5a4a;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #c4b3a0;
+            color: #3d2c1b;
+            box-shadow: 6px 6px 12px #b8a896, -6px -6px 12px #f0e2d0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 10px 10px 20px #b8a896, -10px -10px 20px #f0e2d0;
+        }
+
+        .btn-secondary {
+            background: #d4c5b2;
+            color: #3d2c1b;
+            box-shadow: 6px 6px 12px #b8a896, -6px -6px 12px #f0e2d0;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #3d2c1b;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .about-card {
+            background: #d4c5b2;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            font-size: 1.5em;
+            color: #3d2c1b;
+            margin-bottom: 10px;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .exp-item {
+            background: #d4c5b2;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+        }
+
+        .exp-item h3 {
+            color: #3d2c1b;
+            font-size: 1.3em;
+        }
+
+        .exp-item .company {
+            color: #5a4a3a;
+            font-weight: 600;
+        }
+
+        .exp-item .date {
+            color: #7a6a5a;
+            font-style: italic;
+            margin: 5px 0;
+        }
+
+        .exp-item ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .exp-item ul li {
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .exp-item ul li::before {
+            content: "▸";
+            color: #5a3e2b;
+            position: absolute;
+            left: -20px;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: #d4c5b2;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+        }
+
+        .skill-card h3 {
+            color: #3d2c1b;
+            margin-bottom: 10px;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: #d4c5b2;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+        }
+
+        .contact-info p {
+            font-size: 1.2em;
+            color: #3d2c1b;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #c4b3a0;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+            margin-top: 40px;
+            box-shadow: 8px 8px 16px #b8a896, -8px -8px 16px #f0e2d0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGASI ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">FEBRIYANTI</div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#experience">Pengalaman</a></li>
+                <li><a href="#skills">Keahlian</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== HOME ===== -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>FEBRIYANTI</h1>
+                <p>Admin E-Commerce &amp; Data Analyst Operasional</p>
+                <p class="bio">Berpengalaman dalam mengelola toko online dan menganalisis data operasional untuk efisiensi bisnis.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Hubungi Saya</a>
+                    <a href="#experience" class="btn btn-secondary">Lihat Pengalaman</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TENTANG ===== -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <p style="text-align:center; max-width:700px; margin:0 auto 40px; color:#5a4a3a;">
+                Saya adalah profesional di bidang e-commerce dan analisis data dengan pengalaman mengelola ribuan produk dan mengoptimalkan operasional pengiriman.
+            </p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>📊 Data Analyst</h3>
+                    <p>Menganalisis data operasional untuk meningkatkan efisiensi hingga 30%</p>
+                </div>
+                <div class="about-card">
+                    <h3>🛍️ E-Commerce</h3>
+                    <p>Mengelola 1000+ produk dan meningkatkan penjualan 200%</p>
+                </div>
+                <div class="about-card">
+                    <h3>📈 Dashboard</h3>
+                    <p>Membangun dashboard real-time monitoring kinerja</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PENGALAMAN ===== -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Pengalaman Profesional</h2>
+            
+            <div class="exp-item">
+                <h3>Data Analyst Operasional</h3>
+                <p class="company">J&amp;T Cargo Indonesia</p>
+                <p class="date">Jan 2025 - Mei 2026</p>
+                <ul>
+                    <li>Menganalisis data operasional pengiriman untuk efisiensi rute</li>
+                    <li>Membuat laporan harian, mingguan, dan bulanan</li>
+                    <li>Mengidentifikasi tren untuk meningkatkan kinerja</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <h3>Admin Shopee</h3>
+                <p class="company">Shopee Indonesia</p>
+                <p class="date">Jan 2024 - Des 2024</p>
+                <ul>
+                    <li>Mengelola 1000+ produk dengan sistem inventaris</li>
+                    <li>Meningkatkan penjualan 200% melalui campaign</li>
+                    <li>Menangani customer service dan negosiasi</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <h3>Staff Administrasi</h3>
+                <p class="company">CV. Digital Prima</p>
+                <p class="date">Jun 2022 - Des 2023</p>
+                <ul>
+                    <li>Mengelola data administrasi dan dokumentasi</li>
+                    <li>Koordinasi dengan tim logistik dan gudang</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KEAHLIAN ===== -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Keahlian</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>📊 Data &amp; Analisis</h3>
+                    <p>Microsoft Excel, Google Sheets, Data Visualization</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🛍️ E-Commerce</h3>
+                    <p>Shopee Seller Center, Tokopedia, Lazada</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🛠️ Tools</h3>
+                    <p>Canva, Google Analytics, CRM System</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KONTAK ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-info">
+                <p>📞 +62 812 3456 7890</p>
+                <p>📧 febriyanti@gmail.com</p>
+                <p>📍 Indonesia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Febriyanti. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
